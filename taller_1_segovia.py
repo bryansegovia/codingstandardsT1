@@ -36,7 +36,7 @@ class Passagner:
         My docstring para este metodo
         """
         print("this working here")
-        return isinstance(self.num, int) and self.num > 0
+        return isinstance(self.num, int) and 0 < self.num <= 80
 
     def for_here_discount(self):
         """
@@ -44,7 +44,7 @@ class Passagner:
         """
         if 4 < self.num < 10:
             return 0.1
-        elif self.num <= 10:
+        elif self.num >= 10:
             return 0.2
 
         else:
@@ -57,7 +57,7 @@ class Plane:
     def __init__(self, dist, num, dur, cost_bas):
         self.my_class = MyClass()
         self.passanger = Passagner(num)
-        self.total_time = TotalTime(dur)
+        self.total_time = TotalTime(dur, num)
         self.dist = dist
         self.seats = 200
         self.cost_bas= cost_bas
@@ -85,8 +85,9 @@ class TotalTime:
     """
     My Docstring by Bryan Segovia
     """
-    def __init__(self, dur):
+    def __init__(self, dur, num):
         self.dur = dur
+        self.num = num
 
     def is_valid_total_time(self):
         """
@@ -104,7 +105,7 @@ class TotalTime:
         """
         Docstrinnnnng
         """
-        return 200 if self.dur > 30 else 0
+        return 200 if self.dur > 30 or self.num==2 else 0
 
     def get_weekend(self):
         """
@@ -121,7 +122,7 @@ class Vacation:
     def __init__(self, dist, num, dur):
         self.my_class = MyClass()
         self.passagner = Passagner(num)
-        self.total_time = TotalTime(dur)
+        self.total_time = TotalTime(dur, num)
         self.dist = dist
 
     def sum(self):
@@ -152,7 +153,7 @@ def main():
     """
     #this are the inputs
     dist = "Paris"
-    num = 5
+    num = 6
     dur = 10
 
     #this are the outputs
@@ -161,7 +162,7 @@ def main():
 
     #this will do some printing
     if cost == -1:
-        print("Invalid input.")
+        print("Invalid input -1.")
     else:
         print(f"The total cost of the vacation package is: ${cost}")
 
